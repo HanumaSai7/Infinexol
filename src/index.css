@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Hide scrollbar for Chrome, Safari and Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+  scroll-behavior: smooth;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Roadmap animations */
+.animate-title {
+  animation: fadeIn 1s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.timeline-item {
+  transform: translateX(var(--translate-x, 0));
+  transition: all 1s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item:nth-child(odd) {
+  --translate-x: -100px;
+}
+
+.timeline-item:nth-child(even) {
+  --translate-x: 100px;
+}
+
+.timeline-item.is-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.timeline-item.is-visible .timeline-node {
+  transform: scale(1);
+}
+
+/* Enhanced card animations */
+.timeline-item .bg-white {
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.timeline-item.is-visible:hover .bg-white {
+  transform: scale(1.02) translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Gradient background animation */
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Client logo scroll animations */
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-100% / 3));
+  }
+}
+
+@keyframes scrollRight {
+  0% {
+    transform: translateX(calc(-100% / 3));
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.animate-scroll-left {
+  animation: scrollLeft 40s linear infinite;
+}
+
+.animate-scroll-right {
+  animation: scrollRight 40s linear infinite;
+}
+
+/* Pause animations on hover */
+@media (hover: hover) {
+  .animate-scroll-left:hover,
+  .animate-scroll-right:hover {
+    animation-play-state: paused;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 640px) {
+  .animate-scroll-left,
+  .animate-scroll-right {
+    animation-duration: 30s;
+  }
+}
+
+/* Smooth scrolling behavior */
+:root {
+  scroll-behavior: smooth;
+}
+
+/* Better tap targets on mobile */
+@media (max-width: 640px) {
+  button, 
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+}
+
+/* Smooth hover transitions */
+.hover-lift {
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+}
+
+/* Case studies smooth scrolling */
+.case-study-card {
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
